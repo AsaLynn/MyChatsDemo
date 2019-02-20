@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.zxn.zchartslib.chart.BarChart;
 import com.zxn.zchartslib.chart.RoundBarChart;
@@ -60,7 +61,12 @@ public class RoundBarChartFrag extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_round_bar_chart, container, false);
-        RoundBarChart barChart = (RoundBarChart)view.findViewById(R.id.barChart);
+        LinearLayout root = view.findViewById(R.id.ll_root);
+        RoundBarChart barChart = new RoundBarChart(getActivity());
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+        root.addView(barChart, params);
+        //RoundBarChart barChart = (RoundBarChart)view.findViewById(R.id.barChart);
         initData();
         barChart.setDataList(mDataList);
         return view;
